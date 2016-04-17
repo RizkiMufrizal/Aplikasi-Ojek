@@ -25,10 +25,11 @@ CREATE TABLE tb_ojek(
 
 CREATE TABLE tb_pesan_ojek (
     id_pesan_ojek VARCHAR(150) NOT NULL PRIMARY KEY,
+    tanggal DATE,
     lokasi_awal TEXT NOT NULL,
     lokasi_akhir TEXT NOT NULL,
     status TINYINT(1) NOT NULL,
-    email VARCHAR(50),
+    email VARCHAR(50) NOT NULL,
     id_ojek VARCHAR(150),
     FOREIGN KEY (email)
         REFERENCES tb_pelanggan (email),
