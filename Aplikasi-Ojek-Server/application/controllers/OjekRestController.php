@@ -16,6 +16,7 @@ class OjekRestController extends REST_Controller {
 
     public function __construct($config = 'rest') {
         parent::__construct($config);
+        $this->load->model('Ojek');
 
         header('Access-Control-Allow-Origin: *');
         header("Access-Control-Allow-Headers: X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Request-Method");
@@ -24,6 +25,11 @@ class OjekRestController extends REST_Controller {
         if ($method == "OPTIONS") {
             die();
         }
+    }
+
+    public function ojek_get($idOjek) {
+        $response = $this->Ojek->getOjek($idOjek);
+        $this->response($response[0], REST_Controller::HTTP_OK);
     }
 
 }

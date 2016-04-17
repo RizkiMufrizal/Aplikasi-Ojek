@@ -37,6 +37,11 @@ class PesanOjekRestController extends REST_Controller {
         $this->response($response[0], REST_Controller::HTTP_OK);
     }
 
+    public function pesanOjekByOjek_get($idOjek) {
+        $response = $this->PesanOjek->selectPesanOjekByOjek($idOjek);
+        $this->response($response, REST_Controller::HTTP_OK);
+    }
+
     public function pesanOjek_post() {
         $val = array(
             'id_pesan_ojek' => $this->uuid->v4(),

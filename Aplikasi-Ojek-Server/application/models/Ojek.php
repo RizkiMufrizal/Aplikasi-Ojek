@@ -12,10 +12,14 @@
  */
 class Ojek extends CI_Model {
 
+    public function getOjek($idOjek) {
+        $this->db->where('id_ojek', $idOjek);
+        $this->db->select('nama');
+        return $this->db->get('tb_ojek')->result();
+    }
+
     public function login($idOjek) {
         $this->db->where('id_ojek', $idOjek);
-        $this->db->select('password');
-        $this->db->select('role');
         return $this->db->get('tb_ojek')->result();
     }
 
