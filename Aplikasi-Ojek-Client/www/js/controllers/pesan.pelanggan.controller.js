@@ -37,6 +37,17 @@ angular.module('Aplikasi-Ojek')
               $scope.enable = 3;
               $scope.dataPesanan = data;
               $scope.dataPesanan.nama_ojek = ojek.nama;
+
+              var userPopup = $ionicPopup.show({
+                template: 'selamat, pesanan anda akan di ambil oleh ojek yang bernama ' + ojek.nama,
+                title: 'Info',
+                scope: $scope,
+                buttons: [{
+                  text: '<b>OK</b>',
+                  type: 'button-positive'
+                }]
+              });
+
             });
 
           }
