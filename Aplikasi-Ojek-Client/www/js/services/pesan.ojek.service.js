@@ -2,7 +2,8 @@
 angular.module('Aplikasi-Ojek')
   .factory('PesanOjekService', ['$http', function($http) {
 
-    var baseUrl = 'http://127.0.0.1/Aplikasi-Ojek-Server/index.php';
+    var baseUrl = 'http://10.42.0.1/Aplikasi-Ojek-Server/index.php';
+    //var baseUrl = 'http://127.0.0.1/Aplikasi-Ojek-Server/index.php';
 
     return {
       ambilDataPesanan: function() {
