@@ -5,7 +5,6 @@ angular.module('Aplikasi-Ojek')
 
     $scope.inputRegister = {};
     $scope.inputLogin = {};
-    $scope.enable = false;
 
     $scope.signUp = function() {
       $ionicModal.fromTemplateUrl('templates/register.html', {
@@ -35,6 +34,10 @@ angular.module('Aplikasi-Ojek')
           $scope.modalLogin = modal;
           $scope.modalLogin.show();
         });
+      }
+
+      if ($window.localStorage.getItem('enable')) {
+        $scope.enable = $window.localStorage.getItem('enable');
       }
 
     }
@@ -68,11 +71,11 @@ angular.module('Aplikasi-Ojek')
           $scope.inputLogin = {};
 
           if (data.role === 'ROLE_PELANGGAN') {
-            $scope.enable = true;
-            $window.localStorage.setItem('enable', true);
+            $scope.enable = 0;
+            $window.localStorage.setItem('enable', 0);
           } else {
-            $scope.enable = false;
-            $window.localStorage.setItem('enable', false);
+            $scope.enable = 1;
+            $window.localStorage.setItem('enable', 1);
           }
 
         }
