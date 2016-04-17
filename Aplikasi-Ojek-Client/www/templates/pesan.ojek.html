@@ -1,0 +1,41 @@
+<ion-view view-title="Pesan Ojek">
+  <ion-content>
+    <div class="list" ng-hide="enable">
+
+      <label class="item item-input">
+        <input type="text" placeholder="Lokasi Awal" ng-model="inputPesanOjek.lokasiAwal">
+      </label>
+
+      <label class="item item-input">
+        <input type="text" placeholder="Lokasi Akhir" ng-model="inputPesanOjek.lokasiAkhir">
+      </label>
+
+      <button ng-click="prosesPesanOjek(inputPesanOjek)" class="button button-block button-positive">
+        Pesan Ojek
+      </button>
+
+    </div>
+
+    <div class="card" ng-show="enable">
+      <div class="item item-text-wrap">
+        Sedang mencari ojek ...
+      </div>
+    </div>
+
+    <div class="card" ng-show="enableW">
+      <div class="item item-divider">
+        Data Pesanan Anda :)
+      </div>
+      <div class="item item-text-wrap">
+        <p>ID Pesan Ojek : {{dataPesanan.id_pesan_ojek}}</p>
+        <p>Lokasi Awal : {{dataPesanan.lokasi_awal}}</p>
+        <p>Lokasi Akhir : {{dataPesanan.lokasi_akhir}}</p>
+        <p>Status : {{dataPesanan.status}}</p>
+        <p>Email Anda : {{dataPesanan.email}}</p>
+        <p>ID Ojek : {{dataPesanan.id_ojek}}</p>
+        <p>Tanggal : {{dataPesanan.tanggal}}</p>
+      </div>
+    </div>
+
+  </ion-content>
+</ion-view>
