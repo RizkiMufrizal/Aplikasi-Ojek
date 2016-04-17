@@ -46,6 +46,15 @@ angular.module('Aplikasi-Ojek', ['ionic'])
             controller: 'PesanOjekController'
           }
         }
+      })
+      .state('app.order', {
+        url: '/order',
+        views: {
+          'menuContent': {
+            templateUrl: 'templates/daftar.order.html',
+            controller: 'OjekController'
+          }
+        }
       });
 
     $urlRouterProvider.otherwise('/app/home');
