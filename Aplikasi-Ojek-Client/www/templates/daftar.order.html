@@ -1,0 +1,32 @@
+<ion-view view-title="Daftar Order">
+  <ion-content>
+
+    <div class="list list-inset">
+      <label class="item item-input">
+        <i class="icon ion-search placeholder-icon"></i>
+        <input type="text" placeholder="Search" ng-model="cari">
+      </label>
+    </div>
+
+    <div class="list">
+
+      <div class="item item-button-right" ng-repeat="d in dataPesanOjek | filter : cari">
+
+        <p>ID Pesan Ojek : {{d.id_pesan_ojek}}</p>
+        <p>Lokasi Awal : {{d.lokasi_awal}}</p>
+        <p>Lokasi Akhir : {{d.lokasi_akhir}}</p>
+        <p>Status : {{d.status}}</p>
+        <p>Email Anda : {{d.email}}</p>
+        <p>ID Ojek : {{d.id_ojek}}</p>
+        <p>Tanggal : {{d.tanggal}}</p>
+
+      </div>
+
+    </div>
+
+    <div ng-if="dataPesanOjek.length === 0">
+      Data order anda masih kosong
+    </div>
+
+  </ion-content>
+</ion-view>
