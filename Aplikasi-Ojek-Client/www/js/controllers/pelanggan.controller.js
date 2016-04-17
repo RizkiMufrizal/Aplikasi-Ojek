@@ -37,9 +37,6 @@ angular.module('Aplikasi-Ojek')
         });
       }
 
-      if ($window.localStorage.getItem('enable') !== undefined || $window.localStorage.getItem('enable')) {
-        $scope.enable = $window.localStorage.getItem('enable');
-      }
     }
 
     init();
