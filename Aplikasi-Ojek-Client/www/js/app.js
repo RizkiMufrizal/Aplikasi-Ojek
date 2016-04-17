@@ -21,14 +21,32 @@ angular.module('Aplikasi-Ojek', ['ionic'])
         templateUrl: 'templates/menu.html',
         controller: 'PelangganController'
       })
-      .state('app.playlists', {
-        url: '/playlists',
+      .state('app.home', {
+        url: '/home',
         views: {
           'menuContent': {
             templateUrl: 'templates/home.html'
           }
         }
+      })
+      .state('app.pesan', {
+        url: '/pesan',
+        views: {
+          'menuContent': {
+            templateUrl: 'templates/pesan.ojek.html',
+            controller: 'PesanPelangganController'
+          }
+        }
+      })
+      .state('app.ojek', {
+        url: '/ojek',
+        views: {
+          'menuContent': {
+            templateUrl: 'templates/ojek.html',
+            controller: 'PesanOjekController'
+          }
+        }
       });
 
-    $urlRouterProvider.otherwise('/app/playlists');
+    $urlRouterProvider.otherwise('/app/home');
   });
