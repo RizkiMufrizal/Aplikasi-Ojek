@@ -18,7 +18,15 @@ angular.module('Aplikasi-Ojek')
       PesanOjekService.ambilDataPesanan().success(function(data) {
         if (data.length > $scope.dataPesanOjek.length) {
           $scope.dataPesanOjek = data;
-          alert('ada data baru');
+          var userPopup = $ionicPopup.show({
+            template: 'ada penumpang baru dari ' + data[0].lokasi_awal + ' menuju ' + data[0].lokasi_akhir,
+            title: 'Info',
+            scope: $scope,
+            buttons: [{
+              text: '<b>OK</b>',
+              type: 'button-positive'
+            }]
+          });
         }
       });
 
