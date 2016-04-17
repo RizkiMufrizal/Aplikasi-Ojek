@@ -1,6 +1,6 @@
 <ion-view view-title="Pesan Ojek">
   <ion-content>
-    <div class="list" ng-hide="enable">
+    <div class="list" ng-if="enable === 1">
 
       <label class="item item-input">
         <input type="text" placeholder="Lokasi Awal" ng-model="inputPesanOjek.lokasiAwal">
@@ -16,13 +16,13 @@
 
     </div>
 
-    <div class="card" ng-show="enable">
+    <div class="card" ng-if="enable === 2">
       <div class="item item-text-wrap">
         Sedang mencari ojek ...
       </div>
     </div>
 
-    <div class="card" ng-show="enableW">
+    <div class="card" ng-if="enable === 3">
       <div class="item item-divider">
         Data Pesanan Anda :)
       </div>
@@ -33,6 +33,7 @@
         <p>Status : {{dataPesanan.status}}</p>
         <p>Email Anda : {{dataPesanan.email}}</p>
         <p>ID Ojek : {{dataPesanan.id_ojek}}</p>
+        <p>Nama Ojek : {{dataPesanan.nama_ojek}}</p>
         <p>Tanggal : {{dataPesanan.tanggal}}</p>
       </div>
     </div>
