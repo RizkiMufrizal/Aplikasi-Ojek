@@ -18,11 +18,14 @@
     </ion-header-bar>
     <ion-content>
       <ion-list>
-        <ion-item menu-close ng-click="login()" ng-show="enable">
-          Login
+        <ion-item menu-close href="#/app/home">
+          Home
         </ion-item>
-        <ion-item menu-close ng-click="login()">
-          cek
+        <ion-item menu-close href="#/app/pesan" ng-show="window.localStorage.getItem('enable')">
+          Pesan Ojek
+        </ion-item>
+        <ion-item menu-close href="#/app/ojek" ng-hide="window.localStorage.getItem('enable')">
+          Daftar Penumpang
         </ion-item>
       </ion-list>
     </ion-content>
