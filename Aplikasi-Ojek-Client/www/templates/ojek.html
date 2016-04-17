@@ -1,8 +1,16 @@
 <ion-view view-title="Daftar Penumpang">
   <ion-content>
+
+    <div class="list list-inset">
+      <label class="item item-input">
+        <i class="icon ion-search placeholder-icon"></i>
+        <input type="text" placeholder="Search" ng-model="cari">
+      </label>
+    </div>
+
     <div class="list">
 
-      <div class="item item-button-right" ng-repeat="d in dataPesanOjek">
+      <div class="item item-button-right" ng-repeat="d in dataPesanOjek | filter : cari">
 
         <p>ID Pesan Ojek : {{d.id_pesan_ojek}}</p>
         <p>Lokasi Awal : {{d.lokasi_awal}}</p>
@@ -18,5 +26,10 @@
       </div>
 
     </div>
+
+    <div ng-if="dataPesanOjek.length === 0">
+      Data Penumpang masih kosong
+    </div>
+
   </ion-content>
 </ion-view>
