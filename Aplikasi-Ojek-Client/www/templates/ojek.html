@@ -1,16 +1,21 @@
 <ion-view view-title="Daftar Penumpang">
   <ion-content>
-    <div class="list list-inset">
+    <div class="list">
 
-        <div class="item" ng-repeat="d in dataPesanOjek">
-          <p>ID Pesan Ojek : {{d.id_pesan_ojek}}</p>
-          <p>Lokasi Awal : {{d.lokasi_awal}}</p>
-          <p>Lokasi Akhir : {{d.lokasi_akhir}}</p>
-          <p>Status : {{d.status}}</p>
-          <p>Email Anda : {{d.email}}</p>
-          <p>ID Ojek : {{d.id_ojek}}</p>
-          <p>Tanggal : {{d.tanggal}}</p>
-        </div>
+      <div class="item item-button-right" ng-repeat="d in dataPesanOjek">
+
+        <p>ID Pesan Ojek : {{d.id_pesan_ojek}}</p>
+        <p>Lokasi Awal : {{d.lokasi_awal}}</p>
+        <p>Lokasi Akhir : {{d.lokasi_akhir}}</p>
+        <p>Status : {{d.status}}</p>
+        <p>Email Anda : {{d.email}}</p>
+        <p>ID Ojek : {{d.id_ojek}}</p>
+        <p>Tanggal : {{d.tanggal}}</p>
+
+        <button class="button button-positive" ng-click="ambilPesanan(d)">
+          <i class="icon ion-android-clipboard"></i>
+        </button>
+      </div>
 
     </div>
   </ion-content>
