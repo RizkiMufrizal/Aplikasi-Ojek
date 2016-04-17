@@ -21,10 +21,10 @@
         <ion-item menu-close href="#/app/home">
           Home
         </ion-item>
-        <ion-item menu-close href="#/app/pesan" ng-show="window.localStorage.getItem('enable')">
+        <ion-item menu-close href="#/app/pesan" ng-show="enable != 1">
           Pesan Ojek
         </ion-item>
-        <ion-item menu-close href="#/app/ojek" ng-hide="window.localStorage.getItem('enable')">
+        <ion-item menu-close href="#/app/ojek" ng-show="enable == 1">
           Daftar Penumpang
         </ion-item>
       </ion-list>
