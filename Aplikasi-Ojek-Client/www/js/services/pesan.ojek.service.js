@@ -15,7 +15,7 @@ angular.module('Aplikasi-Ojek')
         return $http.post(baseUrl + '/PesanOjekRestController/pesanOjek', pesanOjek);
       },
       ojekTerimaPesanan: function(pesanOjek) {
-        return $http.put(baseUrl + '/PesanOjekRestController/pesanOjek', pelanggan);
+        return $http.put(baseUrl + '/PesanOjekRestController/pesanOjek', pesanOjek);
       },
       pelangganHapusPesanan: function(idPesanOjek) {
         return $http.delete(baseUrl + '/PesanOjekRestController/pesanOjek/' + idPesanOjek);
