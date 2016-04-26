@@ -3,11 +3,15 @@
     <div class="list" ng-if="enable === 1">
 
       <label class="item item-input">
-        <input type="text" placeholder="Lokasi Awal" ng-model="inputPesanOjek.lokasiAwal">
+        <input type="text" placeholder="Masukkan Lokasi Awal" ng-model="inputPesanOjek.lokasiAwal">
       </label>
 
       <label class="item item-input">
-        <input type="text" placeholder="Lokasi Akhir" ng-model="inputPesanOjek.lokasiAkhir">
+        <input type="text" placeholder="Masukkan Lokasi Akhir" ng-model="inputPesanOjek.lokasiAkhir">
+      </label>
+
+      <label class="item item-input">
+        <input type="text" placeholder="Masukkan Jumlah Jam Anda" ng-model="inputPesanOjek.jumlahJam" />
       </label>
 
       <button ng-click="prosesPesanOjek(inputPesanOjek)" class="button button-block button-positive">
@@ -16,10 +20,14 @@
 
     </div>
 
-    <div class="card" ng-if="enable === 2">
-      <div class="item item-text-wrap">
-        Sedang mencari ojek ...
-      </div>
+    <div class="list card" ng-if="enable === 2">
+
+      <h3 style="text-align: center">Sedang Mencari Ojek</h3>
+
+    <div class="item item-image">
+      <img src="img/ojek.gif">
+    </div>
+
     </div>
 
     <div class="card" ng-if="enable === 3">
@@ -27,11 +35,9 @@
         Data Pesanan Anda :)
       </div>
       <div class="item item-text-wrap">
-        <p>ID Pesan Ojek : {{dataPesanan.id_pesan_ojek}}</p>
-        <p>Lokasi Awal : {{dataPesanan.lokasi_awal}}</p>
-        <p>Lokasi Akhir : {{dataPesanan.lokasi_akhir}}</p>
-        <p>Status : {{dataPesanan.status}}</p>
-        <p>Email Anda : {{dataPesanan.email}}</p>
+        <p>Lokasi Awal Anda : {{dataPesanan.lokasi_awal}}</p>
+        <p>Lokasi Akhir Anda : {{dataPesanan.lokasi_akhir}}</p>
+        <p>Harga : Rp {{dataPesanan.harga}}</p>
         <p>ID Ojek : {{dataPesanan.id_ojek}}</p>
         <p>Nama Ojek : {{dataPesanan.nama_ojek}}</p>
         <p>Tanggal : {{dataPesanan.tanggal}}</p>
