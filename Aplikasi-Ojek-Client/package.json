@@ -2,6 +2,9 @@
   "name": "aplikasi-ojek-client",
   "version": "1.1.1",
   "description": "Aplikasi-Ojek-Client: An Ionic project",
+  "scripts": {
+    "postinstall": "./node_modules/bower/bin/bower i && ionic state reset && ionic config build"
+  },
   "dependencies": {
     "gulp": "^3.5.6",
     "gulp-sass": "^2.0.4",
