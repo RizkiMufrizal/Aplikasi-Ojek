@@ -43,11 +43,16 @@ class PesanOjekRestController extends REST_Controller {
     }
 
     public function pesanOjek_post() {
+
+        $jam = $this->post('jumlahJam');
+
         $val = array(
             'id_pesan_ojek' => $this->uuid->v4(),
             'tanggal' => date("Y-m-d H:i:s"),
             'lokasi_awal' => $this->post('lokasiAwal'),
             'lokasi_akhir' => $this->post('lokasiAkhir'),
+            'jumlah_jam' => $jam,
+            'harga' => $jam * 100000,
             'status' => false,
             'email' => $this->post('email'),
             'id_ojek' => NULL
