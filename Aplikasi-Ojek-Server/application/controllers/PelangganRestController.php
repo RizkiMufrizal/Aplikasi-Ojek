@@ -66,7 +66,7 @@ class PelangganRestController extends REST_Controller {
                         'info' => 'anda berhasil login'
                     );
                 } else {
-                    $response = array('info' => 'username dan password anda salah');
+                    $response = array('info' => 'username dan password anda salah1');
                 }
             }
         } else {
