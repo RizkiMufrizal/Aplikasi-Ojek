@@ -34,3 +34,5 @@ Aplikasi-Ojek-Server/user_guide/
 *.stTheme.cache
 *.sublime-workspace
 *.sublime-project
+
+Aplikasi-Ojek-Client/www/lib/*
