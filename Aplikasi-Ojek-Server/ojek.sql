@@ -13,14 +13,16 @@ CREATE TABLE tb_pelanggan (
     email VARCHAR(50) NOT NULL PRIMARY KEY,
     nama VARCHAR(50) NOT NULL,
     password VARCHAR(150) NOT NULL,
-    role VARCHAR(10) NOT NULL
+    no_telpon VARCHAR(15) NOT NULL,
+    role VARCHAR(30) NOT NULL
 )  ENGINE=INNODB;
 
 CREATE TABLE tb_ojek(
-  id_ojek VARCHAR(150) NOT NULL PRIMARY KEY,
-  nama VARCHAR(50) NOT NULL,
-  password VARCHAR(150) NOT NULL,
-  role VARCHAR(10) NOT NULL
+    id_ojek VARCHAR(150) NOT NULL PRIMARY KEY,
+    nama VARCHAR(50) NOT NULL,
+    password VARCHAR(150) NOT NULL,
+    no_telpon VARCHAR(15) NOT NULL,
+    role VARCHAR(15) NOT NULL
 ) ENGINE = INNODB;
 
 CREATE TABLE tb_pesan_ojek (
@@ -38,3 +40,50 @@ CREATE TABLE tb_pesan_ojek (
     FOREIGN KEY (id_ojek)
         REFERENCES tb_ojek (id_ojek)
 )  ENGINE=INNODB;
+
+CREATE VIEW `tb_pelanggan_pesan_ojek` AS
+SELECT
+  `tb_pelanggan`.`email`,
+  `tb_pelanggan`.`nama`,
+  `tb_pelanggan`.`no_telpon`,
+  `tb_pesan_ojek`.`id_pesan_ojek`,
+  `tb_pesan_ojek`.`tanggal`,
+  `tb_pesan_ojek`.`lokasi_awal`,
+  `tb_pesan_ojek`.`lokasi_akhir`,
+  `tb_pesan_ojek`.`status`,
+  `tb_pesan_ojek`.`jumlah_jam`,
+  `tb_pesan_ojek`.`harga`,
+  `tb_ojek`.`id_ojek`
+FROM
+  `tb_pelanggan`
+INNER JOIN
+  `tb_pesan_ojek`
+ON
+  `tb_pelanggan`.`email` = `tb_pesan_ojek`.`email`
+INNER JOIN
+  `tb_ojek`
+ON
+  `tb_pesan_ojek`.`id_ojek` = `tb_ojek`.`id_ojek` 
+
+CREATE VIEW `tb_ojek_pesan_ojek` AS
+SELECT
+  `tb_ojek`.`nama`,
+  `tb_ojek`.`id_ojek`,
+  `tb_pesan_ojek`.`status`,
+  `tb_ojek`.`no_telpon`,
+  `tb_pesan_ojek`.`tanggal`,
+  `tb_pesan_ojek`.`lokasi_awal`,
+  `tb_pesan_ojek`.`lokasi_akhir`,
+  `tb_pesan_ojek`.`jumlah_jam`,
+  `tb_pesan_ojek`.`harga`,
+  `tb_pesan_ojek`.`email`
+FROM
+  `tb_pelanggan`
+INNER JOIN
+  `tb_pesan_ojek`
+ON
+  `tb_pelanggan`.`email` = `tb_pesan_ojek`.`email`
+INNER JOIN
+  `tb_ojek`
+ON
+  `tb_pesan_ojek`.`id_ojek` = `tb_ojek`.`id_ojek`
