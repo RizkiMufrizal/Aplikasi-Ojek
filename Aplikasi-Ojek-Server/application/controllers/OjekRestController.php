@@ -32,4 +32,22 @@ class OjekRestController extends REST_Controller {
         $this->response($response[0], REST_Controller::HTTP_OK);
     }
 
+    public function register_post() {
+        $uuid = $this->uuid->v4();
+
+        $idOjek = explode('-', $uuid)[1];
+
+        $val = array(
+            'id_ojek' => 'Ojek-' . $idOjek,
+            'nama' => $this->post('nama'),
+            'password' => $this->bcrypt->hash_password($this->post('password')),
+            'no_telpon' => $this->post('noTelpon'),
+            'role' => 'ROLE_OJEK'
+        );
+        $this->Ojek->register($val);
+
+        $response = array('info' => 'anda berhasil melakukan register, id ojek anda adalah Ojek-' . $idOjek);
+        $this->response($response, REST_Controller::HTTP_OK);
+    }
+
 }
