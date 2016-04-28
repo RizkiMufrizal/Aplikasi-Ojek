@@ -16,21 +16,21 @@ class PesanOjek extends CI_Model {
     public function selectPesanOjek() {
         $this->db->order_by('tanggal', 'desc');
         $this->db->where('status', 0);
-        return $this->db->get('tb_pesan_ojek')->result();
+        return $this->db->get('tb_pelanggan_pesan_ojek')->result();
     }
 
     //ojek
     public function selectPesanOjekByOjek($idOjek) {
         $this->db->order_by('tanggal', 'desc');
         $this->db->where('id_ojek', $idOjek);
-        return $this->db->get('tb_pesan_ojek')->result();
+        return $this->db->get('tb_pelanggan_pesan_ojek')->result();
     }
 
     //pelanggan
     public function selectPesanOjekByPelanggan($email) {
         $this->db->order_by('tanggal', 'desc');
         $this->db->where('email', $email);
-        return $this->db->get('tb_pesan_ojek')->result();
+        return $this->db->get('tb_ojek_pesan_ojek')->result();
     }
 
     //pelanggan
