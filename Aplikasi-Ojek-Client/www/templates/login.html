@@ -4,26 +4,26 @@
   </ion-header-bar>
   <ion-content>
 
-      <form>
-          <div class="list">
-              <label class="item item-input">
-                  <input placeholder="Email" type="text" ng-model="inputLogin.email">
-              </label>
-              <label class="item item-input">
-                  <input placeholder="Password" type="password" ng-model="inputLogin.password">
-              </label>
-              <label class="item">
-                  <button ng-click="prosesLogin(inputLogin)" class="button button-block button-positive" type="submit">Log in</button>
-              </label>
-          </div>
-      </form>
+    <form>
+      <div class="list">
+        <label class="item item-input">
+          <input placeholder="Email" type="text" ng-model="inputLogin.email">
+        </label>
+        <label class="item item-input">
+          <input placeholder="Password" type="password" ng-model="inputLogin.password">
+        </label>
+        <label class="item">
+          <button ng-click="prosesLogin(inputLogin)" class="button button-block button-positive" type="submit">Log in</button>
+        </label>
+      </div>
+    </form>
 
   </ion-content>
   <ion-footer-bar>
     <h1 class="title">
-        <button ng-click="signUp()" class="button button-clear button-positive">
-            Sign Up
-        </button>
+      <button ng-click="signUp()" class="button button-clear button-positive">
+        Sign Up
+      </button>
     </h1>
-</ion-footer-bar>
+  </ion-footer-bar>
 </ion-modal-view>
