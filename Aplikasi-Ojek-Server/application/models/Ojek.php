@@ -23,4 +23,8 @@ class Ojek extends CI_Model {
         return $this->db->get('tb_ojek')->result();
     }
 
+    public function register($ojek) {
+        $this->db->insert('tb_ojek', $ojek);
+    }
+
 }
