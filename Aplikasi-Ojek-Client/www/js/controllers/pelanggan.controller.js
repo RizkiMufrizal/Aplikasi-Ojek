@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('Aplikasi-Ojek')
-  .controller('PelangganController', ['$scope', '$ionicModal', '$ionicPopup', 'PelangganService', '$window', function($scope, $ionicModal, $ionicPopup, PelangganService, $window) {
+  .controller('PelangganController', ['$scope', '$ionicModal', '$ionicPopup', 'PelangganService', '$window', 'OjekService', function($scope, $ionicModal, $ionicPopup, PelangganService, $window, OjekService) {
 
     $scope.inputRegister = {};
     $scope.inputLogin = {};
@@ -44,11 +44,36 @@ angular.module('Aplikasi-Ojek')
 
     init();
 
-    $scope.prosesRegister = function(r) {
-      PelangganService.register(r).success(function(data) {
-        $scope.inputRegister = {};
+    $scope.prosesRegister = function(r, choice) {
+      if (choice === 'PELANGGAN') {
+        PelangganService.register(r).success(function(data) {
+          $scope.inputRegister = {};
+          var userPopup = $ionicPopup.show({
+            template: data.info,
+            title: 'Info',
+            scope: $scope,
+            buttons: [{
+              text: '<b>OK</b>',
+              type: 'button-positive'
+            }]
+          });
+        });
+      } else if (choice === 'OJEK') {
+        OjekService.register(r).success(function(data) {
+          $scope.inputRegister = {};
+          var userPopup = $ionicPopup.show({
+            template: data.info,
+            title: 'Info',
+            scope: $scope,
+            buttons: [{
+              text: '<b>OK</b>',
+              type: 'button-positive'
+            }]
+          });
+        });
+      } else {
         var userPopup = $ionicPopup.show({
-          template: data.info,
+          template: 'anda belum memilih user pelanggan atau ojek',
           title: 'Info',
           scope: $scope,
           buttons: [{
@@ -56,7 +81,8 @@ angular.module('Aplikasi-Ojek')
             type: 'button-positive'
           }]
         });
-      });
+      }
+
     };
 
     $scope.prosesLogin = function(l) {
