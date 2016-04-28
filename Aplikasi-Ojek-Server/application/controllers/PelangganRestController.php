@@ -33,6 +33,7 @@ class PelangganRestController extends REST_Controller {
             'email' => $this->post('email'),
             'nama' => $this->post('nama'),
             'password' => $this->bcrypt->hash_password($this->post('password')),
+            'no_telpon' => $this->post('noTelpon'),
             'role' => 'ROLE_PELANGGAN'
         );
         $this->Pelanggan->register($val);
