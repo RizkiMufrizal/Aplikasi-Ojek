@@ -6,7 +6,7 @@
  * @Encoding UTF-8
  * @Project Aplikasi-Ojek-Server
  * @Package Expression package is undefined on line 8, column 15 in Templates/Other/SQLTemplate.sql.
- * 
+ *
  */
 
 CREATE TABLE tb_pelanggan (
@@ -52,6 +52,25 @@ SELECT
   `tb_pesan_ojek`.`lokasi_akhir`,
   `tb_pesan_ojek`.`status`,
   `tb_pesan_ojek`.`jumlah_jam`,
+  `tb_pesan_ojek`.`harga`
+FROM
+  `tb_pelanggan`
+INNER JOIN
+  `tb_pesan_ojek`
+ON
+  `tb_pelanggan`.`email` = `tb_pesan_ojek`.`email`;
+
+CREATE VIEW `tb_pelanggan_ojek` AS
+SELECT
+  `tb_pelanggan`.`email`,
+  `tb_pelanggan`.`nama`,
+  `tb_pelanggan`.`no_telpon`,
+  `tb_pesan_ojek`.`id_pesan_ojek`,
+  `tb_pesan_ojek`.`tanggal`,
+  `tb_pesan_ojek`.`lokasi_awal`,
+  `tb_pesan_ojek`.`lokasi_akhir`,
+  `tb_pesan_ojek`.`status`,
+  `tb_pesan_ojek`.`jumlah_jam`,
   `tb_pesan_ojek`.`harga`,
   `tb_ojek`.`id_ojek`
 FROM
@@ -63,7 +82,7 @@ ON
 INNER JOIN
   `tb_ojek`
 ON
-  `tb_pesan_ojek`.`id_ojek` = `tb_ojek`.`id_ojek` 
+  `tb_pesan_ojek`.`id_ojek` = `tb_ojek`.`id_ojek`;
 
 CREATE VIEW `tb_ojek_pesan_ojek` AS
 SELECT
