@@ -12,6 +12,9 @@ angular.module('Aplikasi-Ojek')
       ambilDataPesananByPelanggan: function(email) {
         return $http.get(baseUrl + '/PesanOjekRestController/pesanOjek/' + email);
       },
+      ambilDataPesananByPelanggan1: function(email) {
+        return $http.get(baseUrl + '/PesanOjekRestController/pesanOjek1/' + email);
+      },
       ambilDataPesananByOjek: function(idOjek) {
         return $http.get(baseUrl + '/PesanOjekRestController/pesanOjekByOjek/' + idOjek);
       },
