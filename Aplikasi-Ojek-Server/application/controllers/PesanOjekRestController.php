@@ -38,6 +38,12 @@ class PesanOjekRestController extends REST_Controller
         $this->response($response[0], REST_Controller::HTTP_OK);
     }
 
+    public function pesanOjek1_get($email)
+    {
+        $response = $this->PesanOjek->selectPesanOjekByPelanggan1($email);
+        $this->response($response[0], REST_Controller::HTTP_OK);
+    }
+
     public function pesanOjekByOjek_get($idOjek)
     {
         $response = $this->PesanOjek->selectPesanOjekByOjek($idOjek);
