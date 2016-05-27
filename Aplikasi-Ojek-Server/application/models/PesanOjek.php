@@ -34,6 +34,14 @@ class PesanOjek extends CI_Model
         $this->db->order_by('tanggal', 'desc');
         $this->db->where('email', $email);
 
+        return $this->db->get('tb_pelanggan_pesan_ojek')->result();
+    }
+
+    public function selectPesanOjekByPelanggan1($email)
+    {
+        $this->db->order_by('tanggal', 'desc');
+        $this->db->where('email', $email);
+
         return $this->db->get('tb_ojek_pesan_ojek')->result();
     }
 
