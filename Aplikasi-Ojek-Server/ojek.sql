@@ -105,4 +105,4 @@ ON
 INNER JOIN
   `tb_ojek`
 ON
-  `tb_pesan_ojek`.`id_ojek` = `tb_ojek`.`id_ojek`
+  `tb_pesan_ojek`.`id_ojek` = `tb_ojek`.`id_ojek`;
