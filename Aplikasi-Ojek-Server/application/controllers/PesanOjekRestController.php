@@ -1,20 +1,19 @@
 <?php
 
 /**
+ *
  * Author Rizki Mufrizal <mufrizalrizki@gmail.com>
- * Since Apr 17, 2016
- * Time 10:22:47 AM
+ * Since Jun 8, 2016
+ * Time 12:57:44 PM
  * Encoding UTF-8
  * Project Aplikasi-Ojek-Server
- * Package Expression package is undefined on line 12, column 14 in Templates/Scripting/PHPClass.php.
+ * Package Expression package is undefined on line 14, column 14 in Templates/Scripting/PHPClass.php.
+ *
  */
-require APPPATH.'/libraries/REST_Controller.php';
+class PesanOjekRestController extends CI_Controller {
 
-class PesanOjekRestController extends REST_Controller
-{
-    public function __construct($config = 'rest')
-    {
-        parent::__construct($config);
+    public function __construct() {
+        parent::__construct();
         $this->load->model('PesanOjek');
 
         header('Access-Control-Allow-Origin: *');
@@ -26,74 +25,99 @@ class PesanOjekRestController extends REST_Controller
         }
     }
 
-    public function pesanOjeks_get()
-    {
+    public function pesanOjeks() {
         $response = $this->PesanOjek->selectPesanOjek();
-        $this->response($response, REST_Controller::HTTP_OK);
+        $this->output
+                ->set_status_header(200)
+                ->set_content_type('application/json', 'utf-8')
+                ->set_output(json_encode($response, JSON_PRETTY_PRINT))
+                ->_display();
+        exit;
     }
 
-    public function pesanOjek_get($email)
-    {
+    public function pesanOjek($email) {
         $response = $this->PesanOjek->selectPesanOjekByPelanggan($email);
-        $this->response($response[0], REST_Controller::HTTP_OK);
+        $this->output
+                ->set_status_header(200)
+                ->set_content_type('application/json', 'utf-8')
+                ->set_output(json_encode($response[0], JSON_PRETTY_PRINT))
+                ->_display();
+        exit;
     }
 
-    public function pesanOjek1_get($email)
-    {
+    public function pesanOjek1($email) {
         $response = $this->PesanOjek->selectPesanOjekByPelanggan1($email);
-        $this->response($response[0], REST_Controller::HTTP_OK);
+        ;
+
+        $this->output
+                ->set_status_header(200)
+                ->set_content_type('application/json', 'utf-8')
+                ->set_output(json_encode($response[0], JSON_PRETTY_PRINT))
+                ->_display();
+        exit;
     }
 
-    public function pesanOjekByOjek_get($idOjek)
-    {
+    public function pesanOjekByOjek($idOjek) {
         $response = $this->PesanOjek->selectPesanOjekByOjek($idOjek);
-        $this->response($response, REST_Controller::HTTP_OK);
+
+        $this->output
+                ->set_status_header(200)
+                ->set_content_type('application/json', 'utf-8')
+                ->set_output(json_encode($response, JSON_PRETTY_PRINT))
+                ->_display();
+        exit;
     }
 
-    public function pesanOjek_post()
-    {
-        $jam = $this->post('jumlahJam');
+    public function pesanOjekPost() {
+
+        $data = (array) json_decode(file_get_contents('php://input'));
+
+        $jam = $data['jumlahJam'];
 
         $val = array(
             'id_pesan_ojek' => $this->uuid->v4(),
             'tanggal' => date('Y-m-d H:i:s'),
-            'lokasi_awal' => $this->post('lokasiAwal'),
-            'lokasi_akhir' => $this->post('lokasiAkhir'),
+            'lokasi_awal' => $data['lokasiAwal'],
+            'lokasi_akhir' => $data['lokasiAkhir'],
             'jumlah_jam' => $jam,
             'harga' => $jam * 100000,
             'status' => false,
-            'email' => $this->post('email'),
+            'email' => $data['email'],
             'id_ojek' => null,
         );
         $this->PesanOjek->insertPesanOjek($val);
         $response = array('info' => 'anda berhasil melakukan pesan ojek, silahkan tunggu sejenak :)');
 
-        $this->response($response, REST_Controller::HTTP_CREATED);
+        $this->output
+                ->set_status_header(200)
+                ->set_content_type('application/json', 'utf-8')
+                ->set_output(json_encode($response, JSON_PRETTY_PRINT))
+                ->_display();
+        exit;
     }
 
-    public function pesanOjek_put()
-    {
+    public function pesanOjekPut() {
+
+        $data = (array) json_decode(file_get_contents('php://input'));
+
         $val = array(
-            'tanggal' => $this->put('tanggal'),
-            'lokasi_awal' => $this->put('lokasi_awal'),
-            'lokasi_akhir' => $this->put('lokasi_akhir'),
+            'tanggal' => $data['tanggal'],
+            'lokasi_awal' => $data['lokasi_awal'],
+            'lokasi_akhir' => $data['lokasi_akhir'],
             'status' => true,
-            'email' => $this->put('email'),
-            'id_ojek' => $this->put('id_ojek'),
+            'email' => $data['email'],
+            'id_ojek' => $data['id_ojek'],
         );
-        $this->PesanOjek->updatePesanOjek($val, $this->put('id_pesan_ojek'));
+        $this->PesanOjek->updatePesanOjek($val, $data['id_pesan_ojek']);
 
         $response = array('info' => 'anda berhasil memilih pelanggan :)');
 
-        $this->response($response, REST_Controller::HTTP_OK);
+        $this->output
+                ->set_status_header(200)
+                ->set_content_type('application/json', 'utf-8')
+                ->set_output(json_encode($response, JSON_PRETTY_PRINT))
+                ->_display();
+        exit;
     }
 
-    public function pesanOjek_delete($idPesanOjek)
-    {
-        $this->PesanOjek->deletePesanOjek($idPesanOjek);
-
-        $response = array('info' => 'anda berhasil menghapus pesanan :)');
-
-        $this->response($response, REST_Controller::HTTP_OK);
-    }
 }

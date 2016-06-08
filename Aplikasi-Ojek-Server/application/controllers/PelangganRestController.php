@@ -1,20 +1,19 @@
 <?php
 
 /**
+ *
  * Author Rizki Mufrizal <mufrizalrizki@gmail.com>
- * Since Apr 17, 2016
- * Time 8:29:25 AM
+ * Since Jun 8, 2016
+ * Time 12:50:59 PM
  * Encoding UTF-8
  * Project Aplikasi-Ojek-Server
- * Package Expression package is undefined on line 12, column 14 in Templates/Scripting/PHPClass.php.
+ * Package Expression package is undefined on line 14, column 14 in Templates/Scripting/PHPClass.php.
+ *
  */
-require APPPATH.'/libraries/REST_Controller.php';
+class PelangganRestController extends CI_Controller {
 
-class PelangganRestController extends REST_Controller
-{
-    public function __construct($config = 'rest')
-    {
-        parent::__construct($config);
+    public function __construct() {
+        parent::__construct();
         $this->load->model('Pelanggan');
         $this->load->model('Ojek');
 
@@ -27,25 +26,34 @@ class PelangganRestController extends REST_Controller
         }
     }
 
-    public function register_post()
-    {
+    public function register() {
+        
+        $data = (array) json_decode(file_get_contents('php://input'));
+        
         $val = array(
-            'email' => $this->post('email'),
-            'nama' => $this->post('nama'),
-            'password' => $this->bcrypt->hash_password($this->post('password')),
-            'no_telpon' => $this->post('noTelpon'),
+            'email' => $data['email'],
+            'nama' => $data['nama'],
+            'password' => $this->bcrypt->hash_password($data['password']),
+            'no_telpon' => $data['noTelpon'],
             'role' => 'ROLE_PELANGGAN',
         );
         $this->Pelanggan->register($val);
 
         $response = array('info' => 'anda berhasil melakukan register');
-        $this->response($response, REST_Controller::HTTP_OK);
+        $this->output
+                ->set_status_header(200)
+                ->set_content_type('application/json', 'utf-8')
+                ->set_output(json_encode($response, JSON_PRETTY_PRINT))
+                ->_display();
+        exit;
     }
 
-    public function login_post()
-    {
-        $email = $this->post('email');
-        $password = $this->post('password');
+    public function login() {
+        
+        $data = (array) json_decode(file_get_contents('php://input'));
+        
+        $email = $data['email'];
+        $password = $data['password'];
 
         $pelanggan = $this->Pelanggan->login($email);
 
@@ -87,6 +95,12 @@ class PelangganRestController extends REST_Controller
             }
         }
 
-        $this->response($response, REST_Controller::HTTP_OK);
+        $this->output
+                ->set_status_header(200)
+                ->set_content_type('application/json', 'utf-8')
+                ->set_output(json_encode($response, JSON_PRETTY_PRINT))
+                ->_display();
+        exit;
     }
+
 }

@@ -1,20 +1,19 @@
 <?php
 
 /**
+ *
  * Author Rizki Mufrizal <mufrizalrizki@gmail.com>
- * Since Apr 17, 2016
- * Time 8:30:29 AM
+ * Since Jun 8, 2016
+ * Time 12:42:12 PM
  * Encoding UTF-8
  * Project Aplikasi-Ojek-Server
- * Package Expression package is undefined on line 12, column 14 in Templates/Scripting/PHPClass.php.
+ * Package Expression package is undefined on line 14, column 14 in Templates/Scripting/PHPClass.php.
+ *
  */
-require APPPATH.'/libraries/REST_Controller.php';
+class OjekRestController extends CI_Controller {
 
-class OjekRestController extends REST_Controller
-{
-    public function __construct($config = 'rest')
-    {
-        parent::__construct($config);
+    public function __construct() {
+        parent::__construct();
         $this->load->model('Ojek');
 
         header('Access-Control-Allow-Origin: *');
@@ -26,28 +25,41 @@ class OjekRestController extends REST_Controller
         }
     }
 
-    public function ojek_get($idOjek)
-    {
+    public function ojek($idOjek) {
         $response = $this->Ojek->getOjek($idOjek);
-        $this->response($response[0], REST_Controller::HTTP_OK);
+        $this->output
+                ->set_status_header(201)
+                ->set_content_type('application/json', 'utf-8')
+                ->set_output(json_encode($response[0], JSON_PRETTY_PRINT))
+                ->_display();
+        exit;
     }
 
-    public function register_post()
-    {
+    public function register() {
+
+        $data = (array) json_decode(file_get_contents('php://input'));
+
         $uuid = $this->uuid->v4();
 
         $idOjek = explode('-', $uuid)[1];
 
         $val = array(
-            'id_ojek' => 'Ojek-'.$idOjek,
-            'nama' => $this->post('nama'),
-            'password' => $this->bcrypt->hash_password($this->post('password')),
-            'no_telpon' => $this->post('noTelpon'),
+            'id_ojek' => 'Ojek-' . $idOjek,
+            'nama' => $data['nama'],
+            'password' => $this->bcrypt->hash_password($data['password']),
+            'no_telpon' => $data['noTelpon'],
             'role' => 'ROLE_OJEK',
         );
         $this->Ojek->register($val);
 
-        $response = array('info' => 'anda berhasil melakukan register, id ojek anda adalah Ojek-'.$idOjek);
-        $this->response($response, REST_Controller::HTTP_OK);
+        $response = array('info' => 'anda berhasil melakukan register, id ojek anda adalah Ojek-' . $idOjek);
+
+        $this->output
+                ->set_status_header(201)
+                ->set_content_type('application/json', 'utf-8')
+                ->set_output(json_encode($response, JSON_PRETTY_PRINT))
+                ->_display();
+        exit;
     }
+
 }

@@ -9,6 +9,9 @@
  *
  */
 
+CREATE DATABASE aplikasiojek;
+USE aplikasiojek;
+
 CREATE TABLE tb_pelanggan (
     email VARCHAR(50) NOT NULL PRIMARY KEY,
     nama VARCHAR(50) NOT NULL,
