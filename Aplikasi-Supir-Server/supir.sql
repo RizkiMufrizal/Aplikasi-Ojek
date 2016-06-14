@@ -9,8 +9,8 @@
  *
  */
 
-CREATE DATABASE aplikasisupir;
-USE aplikasisupir;
+CREATE DATABASE aplikasisupironline;
+USE aplikasisupironline;
 
 CREATE TABLE tb_pelanggan (
     email VARCHAR(50) NOT NULL PRIMARY KEY,

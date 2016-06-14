@@ -4,7 +4,6 @@ angular.module('Aplikasi-Supir')
 
     //var baseUrl = 'http://10.42.0.1/Aplikasi-Supir-Server/index.php';
     var baseUrl = 'http://127.0.0.1/Aplikasi-Supir-Server/index.php';
-    //var baseUrl = 'http://supir-mufrizal.rhcloud.com';
 
     return {
       register: function(pelanggan) {

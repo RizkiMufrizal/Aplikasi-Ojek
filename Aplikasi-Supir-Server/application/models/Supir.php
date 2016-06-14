@@ -8,23 +8,25 @@
  * Project Aplikasi-Supir-Server
  * Package Expression package is undefined on line 12, column 14 in Templates/Scripting/PHPClass.php.
  */
-class Supir extends CI_Model {
-
-    public function getSupir($idSupir) {
+class Supir extends CI_Model
+{
+    public function getSupir($idSupir)
+    {
         $this->db->where('id_supir', $idSupir);
         $this->db->select('nama');
 
         return $this->db->get('tb_supir')->result();
     }
 
-    public function login($idSupir) {
+    public function login($idSupir)
+    {
         $this->db->where('id_supir', $idSupir);
 
         return $this->db->get('tb_supir')->result();
     }
 
-    public function register($supir) {
+    public function register($supir)
+    {
         $this->db->insert('tb_supir', $supir);
     }
-
 }

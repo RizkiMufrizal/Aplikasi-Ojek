@@ -27,9 +27,9 @@ class PelangganRestController extends CI_Controller {
     }
 
     public function register() {
-        
+
         $data = (array) json_decode(file_get_contents('php://input'));
-        
+
         $val = array(
             'email' => $data['email'],
             'nama' => $data['nama'],
@@ -49,9 +49,9 @@ class PelangganRestController extends CI_Controller {
     }
 
     public function login() {
-        
+
         $data = (array) json_decode(file_get_contents('php://input'));
-        
+
         $email = $data['email'];
         $password = $data['password'];
 
