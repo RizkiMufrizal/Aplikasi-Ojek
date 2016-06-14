@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('Aplikasi-Supir')
-  .controller('PelangganController', ['$scope', '$ionicModal', '$ionicPopup', 'PelangganService', '$window', 'SupirService', function($scope, $ionicModal, $ionicPopup, PelangganService, $window, SupirService) {
+  .controller('PelangganController', ['$scope', '$ionicModal', '$ionicPopup', 'PelangganService', '$window', 'SupirService', '$ionicHistory', '$state', function($scope, $ionicModal, $ionicPopup, PelangganService, $window, SupirService, $ionicHistory, $state) {
 
     $scope.inputRegister = {};
     $scope.inputLogin = {};
@@ -23,6 +23,22 @@ angular.module('Aplikasi-Supir')
         $scope.modalLogin = modal;
         $scope.modalLogin.show();
         $scope.modalRegister.hide();
+      });
+    };
+
+    $scope.signOut = function() {
+
+      $state.go('app.home');
+
+      $window.localStorage.clear();
+      $ionicHistory.clearCache();
+      $ionicHistory.clearHistory();
+
+      $ionicModal.fromTemplateUrl('templates/login.html', {
+        scope: $scope
+      }).then(function(modal) {
+        $scope.modalLogin = modal;
+        $scope.modalLogin.show();
       });
     };
 
