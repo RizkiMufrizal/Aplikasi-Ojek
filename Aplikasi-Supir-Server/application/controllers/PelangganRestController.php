@@ -6,7 +6,7 @@
  * Since Jun 8, 2016
  * Time 12:50:59 PM
  * Encoding UTF-8
- * Project Aplikasi-Ojek-Server
+ * Project Aplikasi-Supir-Server
  * Package Expression package is undefined on line 14, column 14 in Templates/Scripting/PHPClass.php.
  *
  */
@@ -15,7 +15,7 @@ class PelangganRestController extends CI_Controller {
     public function __construct() {
         parent::__construct();
         $this->load->model('Pelanggan');
-        $this->load->model('Ojek');
+        $this->load->model('Supir');
 
         header('Access-Control-Allow-Origin: *');
         header('Access-Control-Allow-Headers: X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Request-Method');
@@ -58,19 +58,19 @@ class PelangganRestController extends CI_Controller {
         $pelanggan = $this->Pelanggan->login($email);
 
         if (sizeof($pelanggan) == 0) {
-            $ojek = $this->Ojek->login($email);
+            $supir = $this->Supir->login($email);
 
-            if (sizeof($ojek) == 0) {
+            if (sizeof($supir) == 0) {
                 $response = array('info' => 'anda belum melakukan registrasi');
             } else {
-                if ($this->bcrypt->check_password($password, $ojek[0]->password)) {
+                if ($this->bcrypt->check_password($password, $supir[0]->password)) {
                     $this->session->set_userdata(array(
                         'isLogin' => true,
-                        'id_ojek' => $email,
+                        'id_supir' => $email,
                     ));
                     $response = array(
-                        'id_ojek' => $email,
-                        'role' => $ojek[0]->role,
+                        'id_supir' => $email,
+                        'role' => $supir[0]->role,
                         'login' => true,
                         'info' => 'anda berhasil login',
                     );
