@@ -10,7 +10,7 @@
 
     <div class="list">
 
-      <div class="item item-button-right" ng-repeat="d in dataPesanOjek | filter : cari">
+      <div class="item item-button-right" ng-repeat="d in dataPesanSupir | filter : cari">
 
         <p>Lokasi Awal : {{d.lokasi_awal}}</p>
         <p>Lokasi Akhir : {{d.lokasi_akhir}}</p>
@@ -22,7 +22,7 @@
 
     </div>
 
-    <div class="card" ng-if="dataPesanOjek.length === 0">
+    <div class="card" ng-if="dataPesanSupir.length === 0">
       <div style="text-align: center" class="item item-text-wrap">
         Data order anda masih kosong
       </div>

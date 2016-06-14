@@ -1,4 +1,4 @@
-angular.module('Aplikasi-Ojek', ['ionic'])
+angular.module('Aplikasi-Supir', ['ionic'])
 
   .run(function($ionicPlatform) {
     $ionicPlatform.ready(function() {
@@ -33,17 +33,17 @@ angular.module('Aplikasi-Ojek', ['ionic'])
         url: '/pesan',
         views: {
           'menuContent': {
-            templateUrl: 'templates/pesan.ojek.html',
+            templateUrl: 'templates/pesan.supir.html',
             controller: 'PesanPelangganController'
           }
         }
       })
-      .state('app.ojek', {
-        url: '/ojek',
+      .state('app.supir', {
+        url: '/supir',
         views: {
           'menuContent': {
-            templateUrl: 'templates/ojek.html',
-            controller: 'PesanOjekController'
+            templateUrl: 'templates/supir.html',
+            controller: 'PesanSupirController'
           }
         }
       })
@@ -52,7 +52,7 @@ angular.module('Aplikasi-Ojek', ['ionic'])
         views: {
           'menuContent': {
             templateUrl: 'templates/daftar.order.html',
-            controller: 'OjekController'
+            controller: 'SupirController'
           }
         }
       });

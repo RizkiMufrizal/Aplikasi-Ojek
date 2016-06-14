@@ -1,23 +1,23 @@
 'use strict';
 
-angular.module('Aplikasi-Ojek')
-  .controller('PesanOjekController', ['$scope', 'PesanOjekService', '$window', '$ionicPopup', function($scope, PesanOjekService, $window, $ionicPopup) {
+angular.module('Aplikasi-Supir')
+  .controller('PesanSupirController', ['$scope', 'PesanSupirService', '$window', '$ionicPopup', function($scope, PesanSupirService, $window, $ionicPopup) {
 
-    $scope.dataPesanOjek = [];
+    $scope.dataPesanSupir = [];
 
-    function ambilDataPesanOjek() {
-      PesanOjekService.ambilDataPesanan().success(function(data) {
-        $scope.dataPesanOjek = data;
+    function ambilDataPesanSupir() {
+      PesanSupirService.ambilDataPesanan().success(function(data) {
+        $scope.dataPesanSupir = data;
       });
     }
 
-    ambilDataPesanOjek();
+    ambilDataPesanSupir();
 
     setInterval(function() {
 
-      PesanOjekService.ambilDataPesanan().success(function(data) {
-        if (data.length > $scope.dataPesanOjek.length) {
-          $scope.dataPesanOjek = data;
+      PesanSupirService.ambilDataPesanan().success(function(data) {
+        if (data.length > $scope.dataPesanSupir.length) {
+          $scope.dataPesanSupir = data;
           var userPopup = $ionicPopup.show({
             template: 'ada penumpang baru dari ' + data[0].lokasi_awal + ' menuju ' + data[0].lokasi_akhir,
             title: 'Info',
@@ -33,10 +33,10 @@ angular.module('Aplikasi-Ojek')
     }, 3000);
 
     $scope.ambilPesanan = function(o) {
-      o.id_ojek = $window.localStorage.getItem('id_ojek');
+      o.id_supir = $window.localStorage.getItem('id_supir');
 
-      PesanOjekService.ojekTerimaPesanan(o).success(function(data) {
-        ambilDataPesanOjek();
+      PesanSupirService.supirTerimaPesanan(o).success(function(data) {
+        ambilDataPesanSupir();
         var userPopup = $ionicPopup.show({
           template: data.info,
           title: 'Info',

@@ -1,19 +1,19 @@
 'use strict';
 
-angular.module('Aplikasi-Ojek')
-  .controller('PesanPelangganController', ['$scope', 'PesanOjekService', '$window', '$ionicPopup', function($scope, PesanOjekService, $window, $ionicPopup) {
+angular.module('Aplikasi-Supir')
+  .controller('PesanPelangganController', ['$scope', 'PesanSupirService', '$window', '$ionicPopup', function($scope, PesanSupirService, $window, $ionicPopup) {
 
-    $scope.inputPesanOjek = {};
+    $scope.inputPesanSupir = {};
     $scope.enable = 1;
 
     $scope.dataPesanan = {};
 
-    $scope.prosesPesanOjek = function(p) {
+    $scope.prosesPesanSupir = function(p) {
       p.email = $window.localStorage.getItem('email');
-      PesanOjekService.pelangganPesanOjek(p).success(function(data) {
-        $scope.inputPesanOjek = {};
+      PesanSupirService.pelangganPesanSupir(p).success(function(data) {
+        $scope.inputPesanSupir = {};
         $scope.enable = 2;
-        checkPesanOjek();
+        checkPesanSupir();
         var userPopup = $ionicPopup.show({
           template: data.info,
           title: 'Info',
@@ -26,23 +26,23 @@ angular.module('Aplikasi-Ojek')
       });
     };
 
-    function checkPesanOjek() {
+    function checkPesanSupir() {
       var c = setInterval(function() {
-        PesanOjekService.ambilDataPesananByPelanggan($window.localStorage.getItem('email')).success(function(data1) {
+        PesanSupirService.ambilDataPesananByPelanggan($window.localStorage.getItem('email')).success(function(data1) {
 
           if (data1.status === '1') {
 
             clearInterval(c);
 
-            PesanOjekService.ambilDataPesananByPelanggan1($window.localStorage.getItem('email')).success(function(data) {
+            PesanSupirService.ambilDataPesananByPelanggan1($window.localStorage.getItem('email')).success(function(data) {
 
-              PesanOjekService.ambilDataOjek(data.id_ojek).success(function(ojek) {
+              PesanSupirService.ambilDataSupir(data.id_supir).success(function(supir) {
                 $scope.enable = 3;
                 $scope.dataPesanan = data;
-                $scope.dataPesanan.nama_ojek = ojek.nama;
+                $scope.dataPesanan.nama_supir = supir.nama;
 
                 var userPopup = $ionicPopup.show({
-                  template: 'selamat, pesanan anda akan di ambil oleh ojek yang bernama ' + ojek.nama,
+                  template: 'selamat, pesanan anda akan di ambil oleh supir yang bernama ' + supir.nama,
                   title: 'Info',
                   scope: $scope,
                   buttons: [{

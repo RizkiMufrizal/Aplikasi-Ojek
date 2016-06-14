@@ -1,31 +1,31 @@
-<ion-view view-title="Pesan Ojek">
+<ion-view view-title="Pesan Supir">
   <ion-content>
     <div class="list" ng-if="enable === 1">
 
       <label class="item item-input">
-        <input type="text" placeholder="Masukkan Lokasi Awal" ng-model="inputPesanOjek.lokasiAwal">
+        <input type="text" placeholder="Masukkan Lokasi Awal" ng-model="inputPesanSupir.lokasiAwal">
       </label>
 
       <label class="item item-input">
-        <input type="text" placeholder="Masukkan Lokasi Akhir" ng-model="inputPesanOjek.lokasiAkhir">
+        <input type="text" placeholder="Masukkan Lokasi Akhir" ng-model="inputPesanSupir.lokasiAkhir">
       </label>
 
       <label class="item item-input">
-        <input type="text" placeholder="Masukkan Jumlah Jam Anda" ng-model="inputPesanOjek.jumlahJam"/>
+        <input type="text" placeholder="Masukkan Jumlah Jam Anda" ng-model="inputPesanSupir.jumlahJam"/>
       </label>
 
-      <button ng-click="prosesPesanOjek(inputPesanOjek)" class="button button-block button-positive">
-        Pesan Ojek
+      <button ng-click="prosesPesanSupir(inputPesanSupir)" class="button button-block button-positive">
+        Pesan Supir
       </button>
 
     </div>
 
     <div class="list card" ng-if="enable === 2">
 
-      <h3 style="text-align: center">Sedang Mencari Ojek</h3>
+      <h3 style="text-align: center">Sedang Mencari Supir</h3>
 
       <div class="item item-image">
-        <img src="img/ojek.gif">
+        <img src="img/supir.gif">
       </div>
 
     </div>
@@ -38,8 +38,8 @@
         <p>Lokasi Awal Anda : {{dataPesanan.lokasi_awal}}</p>
         <p>Lokasi Akhir Anda : {{dataPesanan.lokasi_akhir}}</p>
         <p>Harga : Rp {{dataPesanan.harga}}</p>
-        <p>Nama Ojek : {{dataPesanan.nama_ojek}}</p>
-        <p>No Telpon Ojek : {{dataPesanan.no_telpon}}</p>
+        <p>Nama Supir : {{dataPesanan.nama_supir}}</p>
+        <p>No Telpon Supir : {{dataPesanan.no_telpon}}</p>
         <p>Tanggal : {{dataPesanan.tanggal}}</p>
       </div>
     </div>

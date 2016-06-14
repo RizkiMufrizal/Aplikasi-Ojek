@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('Aplikasi-Ojek')
-  .controller('PelangganController', ['$scope', '$ionicModal', '$ionicPopup', 'PelangganService', '$window', 'OjekService', function($scope, $ionicModal, $ionicPopup, PelangganService, $window, OjekService) {
+angular.module('Aplikasi-Supir')
+  .controller('PelangganController', ['$scope', '$ionicModal', '$ionicPopup', 'PelangganService', '$window', 'SupirService', function($scope, $ionicModal, $ionicPopup, PelangganService, $window, SupirService) {
 
     $scope.inputRegister = {};
     $scope.inputLogin = {};
@@ -59,7 +59,7 @@ angular.module('Aplikasi-Ojek')
           });
         });
       } else if (choice === 'OJEK') {
-        OjekService.register(r).success(function(data) {
+        SupirService.register(r).success(function(data) {
           $scope.inputRegister = {};
           var userPopup = $ionicPopup.show({
             template: data.info,
@@ -73,7 +73,7 @@ angular.module('Aplikasi-Ojek')
         });
       } else {
         var userPopup = $ionicPopup.show({
-          template: 'anda belum memilih user pelanggan atau ojek',
+          template: 'anda belum memilih user pelanggan atau supir',
           title: 'Info',
           scope: $scope,
           buttons: [{
@@ -91,7 +91,7 @@ angular.module('Aplikasi-Ojek')
         if (data.login === true) {
           $window.localStorage.setItem('role', data.role);
           $window.localStorage.setItem('email', data.email);
-          $window.localStorage.setItem('id_ojek', data.id_ojek);
+          $window.localStorage.setItem('id_supir', data.id_supir);
 
           $scope.modalLogin.hide();
           $scope.inputLogin = {};
